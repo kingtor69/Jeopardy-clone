@@ -163,60 +163,31 @@ function createHtmlBoard() {
     const gameBoardDiv = document.querySelector('#game-board-div');
     const gameTable = document.createElement('table');
     gameTable.id = "game-table"
-    gameTable.innerHTML = `
-        <thead>
-            <tr>
-                <th id="0"></th>
-                <th id="1"></th>
-                <th id="2"></th>
-                <th id="3"></th>
-                <th id="4"></th>
-                <th id="5"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="0-0"></td>
-                <td id="1-0"></td>
-                <td id="2-0"></td>
-                <td id="3-0"></td>
-                <td id="4-0"></td>
-                <td id="5-0"></td>
-            </tr>
-            <tr>
-                <td id="0-1"></td>
-                <td id="1-1"></td>
-                <td id="2-1"></td>
-                <td id="3-1"></td>
-                <td id="4-1"></td>
-                <td id="5-1"></td>
-            </tr>
-            <tr>
-                <td id="0-2"></td>
-                <td id="1-2"></td>
-                <td id="2-2"></td>
-                <td id="3-2"></td>
-                <td id="4-2"></td>
-                <td id="5-2"></td>
-            </tr>
-            <tr>
-                <td id="0-3"></td>
-                <td id="1-3"></td>
-                <td id="2-3"></td>
-                <td id="3-3"></td>
-                <td id="4-3"></td>
-                <td id="5-3"></td>
-            </tr>
-            <tr>
-                <td id="0-4"></td>
-                <td id="1-4"></td>
-                <td id="2-4"></td>
-                <td id="3-4"></td>
-                <td id="4-4"></td>
-                <td id="5-4"></td>
-            </tr>
-        </tbody>
-    `;
+
+    const tableHead = document.createElement('thead');
+    tableHead.id = "board-table-head";
+    gameBoardDiv.appendChild(tableHead);
+    const tr = document.createElement('tr');
+    tableHead.appendChild(tr);
+    for (let col = 0; col < 6; col++) {
+        const th = document.createElement('th');
+        th.id = [col];
+        tr.appendChild(th);
+    };
+
+    const tableBody = document.createElement('tbody');
+    tableBody.id = "game-table-board";
+    gameBoardDiv.appendChild(tableBody);
+    for (let row = 0; row < 5; row++) {
+        const bodyTr = document.createElement('tr');
+        tableBody.appendChild(bodyTr);
+        for (let col = 0; col < 6; col++) {
+            const td = document.createElement('td');
+            td.id = `${col}-${row}`
+            bodyTr.appendChild(td)
+        }
+    }
+    
     gameBoardDiv.appendChild(gameTable);
 };
 
